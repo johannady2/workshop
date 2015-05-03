@@ -5,13 +5,15 @@
     var service = new EmployeeService();
     service.initialize().done(function () {
         console.log("Service initialized");
+		renderHomeView();
     });
 
     /* --------------------------------- Event Registration -------------------------------- */
-    $('.search-key').on('keyup', findByName);
-    $('.help-btn').on('click', function() {
-        alert("Employee Directory v3.4");
-    });
+		//  $('.search-key').on('keyup', findByName);
+		/*  $('.help-btn').on('click', function() {
+			alert("Employee Directory v3.4");
+		});
+		*/
 
     /* ---------------------------------- Local Functions ---------------------------------- */
     function findByName() {
@@ -25,6 +27,16 @@
             }
         });
     }
+	
+	function renderHomeView()
+	{
+		var html =
+		  "<h1>Directory</h1>" +
+		  "<input class='search-key' type='search' placeholder='Enter name'/>" +
+		  "<ul class='employee-list'></ul>";
+		$('body').html(html);
+		$('.search-key').on('keyup', findByName);
+	}
 
 }());
 
@@ -40,3 +52,5 @@ document.addEventListener('deviceready', function () {
       };
   }
 }, false);
+
+FastClick.attach(document.body);
